@@ -1,11 +1,32 @@
 body {
   font-size: 120%;
-  font-family: Arial;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
 }
 
 button, input {
   font-size: 100%;
   font-family: Arial;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid #929292;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  color: black !important;
+}
+
+#add-btn {
+  color: rgba(53, 167, 30, 0.836);
+}
+
+#sub-btn {
+  color: rgba(219, 29, 29, 0.884);
 }
 
 table {
@@ -19,7 +40,7 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #e2e2e2ce;
 }
 
 .error {
@@ -34,11 +55,14 @@ tr:nth-child(even) {
 
 .total {
   font-size: 150%;
-  text-decoration: underline;
+  font-weight: bold;
+}
+
+span {
+  color: rgb(236, 81, 36);
 }
 
 .form {
-  margin-top: 25px;
   width: 100%;
 }
 
@@ -48,4 +72,13 @@ tr:nth-child(even) {
   overflow: auto;
   width: 90%;
   margin: 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #dddddd;
+}
+
+#myChart {
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 5px;
 }
