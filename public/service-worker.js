@@ -1,4 +1,4 @@
-
+// all files that need to be cached
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png"
 ]
-
+// setting cache variables 
 const CACHE_NAME = "static-cache-v1";
 const DATA_CACHE_NAME  = "runtime-cache";
 
@@ -30,7 +30,6 @@ self.addEventListener("activate", evt => {
     caches
     .keys()
     .then(cacheNames => {
-      // return array of cache names that are old to delete
       return cacheNames.filter(
         cacheName => !currentCaches.includes(cacheName)
       );
@@ -55,7 +54,6 @@ self.addEventListener('fetch', evt => {
     evt.respondWith(fetch(evt.request));
     return;
   }
-
   if (evt.request.url.includes("/api/")) {
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
@@ -69,14 +67,11 @@ self.addEventListener('fetch', evt => {
     );
     return;
   }
-
   evt.respondWith(
     caches.match(evt.request).then(response => {
       if (response) {
         return response;
       }
-
-      // request is not in cache. make network request and cache the response
       return caches.open(DATA_CACHE_NAME).then(cache => {
         return fetch(evt.request).then(response => {
           return cache.put(evt.request, response.clone()).then(() => {
