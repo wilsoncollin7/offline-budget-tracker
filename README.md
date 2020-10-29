@@ -1,63 +1,54 @@
-# Unit 18 PWA Homework: Online/Offline Budget Trackers
+# Offline Budget App 
+  ![GitHub license](https://img.shields.io/badge/Made%20by-%40Wilsoncollin7-orange) [![GitHub followers](https://img.shields.io/github/followers/wilsoncollin7.svg?style=social&label=Follow&maxAge=2592000)](https://github.com/wilsoncollin7?tab=followers) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Add functionality to our existing Budget Tracker application to allow for offline access and functionality.
+  This app allows the user to track their expenses even if there is no connection. The app will still function and store data if there is no internet, once a connection is made the data will automatically be sent to the database. :rocket:
 
-The user will be able to add expenses and deposits to their budget with or without a connection. When entering transactions offline, they should populate the total when brought back online.
+  Here is the deployed app on Heroku: [Budget App](https://expenses-tracker-offline.herokuapp.com/)
 
-Offline Functionality:
+  <p align="center">
+    <img src="./public/images/snip.JPG" width="600">
+  </p>
+  ## Table of Contents
 
-  * Enter deposits offline
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [License](#license)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
 
-  * Enter expenses offline
+  ## Installation
 
-When brought back online:
+  You can clone the repo and launch the app on your own localhost, and set up your own heroku so the app is always available. You will need to initialize Mongolab for heroku to work.
 
-  * Offline entries should be added to tracker.
+  ```
+  $ heroku addons:create mongolab -a {YOUR APP NAME}
+  ```
 
-## User Story
-AS AN avid traveller
-I WANT to be able to track my withdrawals and deposits with or without a data/internet connection
-SO THAT my account balance is accurate when I am traveling
+  ## Usage
 
-## Business Context
+  This project uses an Node.js Express server and a service-worker to cache the files in the app. The database is Mongoose DB. Run:
 
-Giving users a fast and easy way to track their money is important, but allowing them to access that information anytime is even more important. Having offline functionality is paramount to our applications success.
+  ```
+  npm install
+  npm start
+  ```
 
+  ## License
 
-## Acceptance Criteria
-GIVEN a user is on Budget App without an internet connection
-WHEN the user inputs a withdrawal or deposit
-THEN that will be shown on the page, and added to their transaction history when their connection is back online.
+  This aplication is made with the [MIT License](https://opensource.org/licenses/MIT)
 
-- - -
+  ## Contributing
 
-## Commit Early and Often
+  To contribute please contact me!
 
-* One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+  ## Tests
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
+  If you find any bugs or issues please contact me!
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+  ## Questions
 
-* Follow these guidelines for committing:
+  For any questions you might have, you can email me at wilsoncollin7@gmail.com. You can also check out my [GitHub Profile](https://github.com/wilsoncollin7).
 
-  * Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
-
-  * Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
-
-  * Don't commit half done work, for the sake of your collaborators (and your future self!)
-
-  * Test your application before you commit to ensure functionality at every step in the development process
-
-* We would like you to have well over 200 commits by graduation, so commit early and often!
-
-* Deploy your application with [Heroku and MongoDB Atlas.](../04-Important/MongoAtlas-Deploy.md)
-
-## Submission on BCS
-
-* You are required to submit the following:
-
-  * the URL to the deployed application
-
-  * the URL to the Github repository
+  <img src="https://avatars2.githubusercontent.com/u/65512203?s=460&u=fb31e3048d1cfa064b8ee0ec696be762b96343f8&v=4" width="200" style="border-radius:50%"/>
 
