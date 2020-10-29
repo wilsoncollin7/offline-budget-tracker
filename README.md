@@ -8,6 +8,7 @@
   <p align="center">
     <img src="./public/images/snip.JPG" width="600">
   </p>
+  
   ## Table of Contents
 
   - [Installation](#installation)
