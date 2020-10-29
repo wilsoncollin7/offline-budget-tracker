@@ -16,47 +16,60 @@ const DATA_CACHE_NAME  = "runtime-cache";
 // install
 self.addEventListener("install", evt => {
   evt.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+    caches
+    .open(CACHE_NAME)
+    .then(cache => cache.addAll(FILES_TO_CACHE))
+    .then(() => self.skipWaiting())
   );
-  self.skipWaiting();
 });
 
 // activate
 self.addEventListener("activate", evt => {
+  const currentCaches = [CACHE_NAME, DATA_CACHE_NAME];
   evt.waitUntil(
-    caches.keys().then(keyList => {
+    caches
+    .keys()
+    .then(cacheNames => {
+      // return array of cache names that are old to delete
+      return cacheNames.filter(
+        cacheName => !currentCaches.includes(cacheName)
+      );
+    })
+    .then(cachesDelete => {
       return Promise.all(
-        keyList.map(key => {
-          if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-            console.log("Removing old cache data", key);
-            return caches.delete(key);
-          }
+        cachesDelete.map(cacheDelete => {
+          return caches.delete(cacheDelete);
         })
       );
     })
+    .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 // fetch
 self.addEventListener('fetch', evt => {
+  if (
+    evt.request.method !== "GET" ||
+    !evt.request.url.startsWith(self.location.origin)
+  ) {
+    evt.respondWith(fetch(evt.request));
+    return;
+  }
+
   if (evt.request.url.includes("/api/")) {
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
         return fetch(evt.request)
           .then(response => {
-            if (response.status === 200) {
-              cache.put(evt.request.url, response.clone());
-            }
+            cache.put(evt.request, response.clone());
             return response;
           })
-          .catch(err => {
-            return cache.match(evt.request);
-          });
-      }).catch(err => console.log(err))
+          .catch(() => caches.match(evt.request));
+      })
     );
     return;
   }
+
   evt.respondWith(
     caches.match(evt.request).then(response => {
       if (response) {
